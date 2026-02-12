@@ -91,7 +91,9 @@ async function read() {
         .filter((d): d is Row => d !== null)
         .filter((d) => d.genre_bucket !== "Other");
 
-    allRows.value = cleaned.slice(0, 700);
+    // no more sampling - show all data points, let zoom/brush/filtering
+    // handle the visual clutter (TA feedback from hw2 said to stop pre-filtering)
+    allRows.value = cleaned;
 }
 
 function onResize() {
@@ -198,7 +200,7 @@ function initChart() {
             .append("circle")
             .attr("cx", (d: any) => x(d.artist_followers))
             .attr("cy", (d: any) => y(d.track_popularity))
-            .attr("r", 3)
+            .attr("r", 2.5)
             .attr("fill", (d: any) => color(d.genre_bucket))
             .attr("opacity", 0)
             // RUBRIC: fundamental interaction (10pts) - tooltip shows details on hover
@@ -225,7 +227,7 @@ function initChart() {
                     .style("top", event.pageY - 10 + "px");
             })
             .on("mouseout", function () {
-                d3.select(this).attr("r", 3).attr("stroke", "none");
+                d3.select(this).attr("r", 2.5).attr("stroke", "none");
                 tooltip.style("opacity", 0);
             });
 

@@ -1,10 +1,12 @@
 <script setup lang="ts">
 // RUBRIC: dashboard style (5pts) - all views fit on one screen, focus+context design
-// RUBRIC: design rationale (25pts) - histogram gives overview, scatter and parallel coords provide detailed focus
+// RUBRIC: design rationale (25pts) - histogram gives overview, scatter and streamgraph provide detailed focus
 // user can brush histogram to filter, click legends to highlight genres
+// replaced parallel coords with streamgraph for hw3 - TA feedback said all 3 views
+// covered the same info, so now the streamgraph brings in the time dimension
 import PopularityHistogram from "./components/PopularityHistogram.vue";
 import FollowersScatter from "./components/FollowersScatter.vue";
-import ParallelCoords from "./components/ParallelCoords.vue";
+import GenreStream from "./components/GenreStream.vue";
 </script>
 
 <template>
@@ -13,8 +15,8 @@ import ParallelCoords from "./components/ParallelCoords.vue";
             <VCol cols="12">
                 <h2 class="mb-1">Spotify Tracks Dashboard (2009–2023)</h2>
                 <div class="subtext">
-                    Overview + focus views using track popularity, artist
-                    popularity, followers, and genres.
+                    Explore track popularity, artist followers, and genre
+                    trends over time. Top 6 genres by track frequency.
                 </div>
             </VCol>
         </VRow>
@@ -31,7 +33,7 @@ import ParallelCoords from "./components/ParallelCoords.vue";
             <VCol cols="6" class="pa-2">
                 <VCard class="fill-height" elevation="2">
                     <VCardText class="fill-height">
-                        <ParallelCoords />
+                        <GenreStream />
                     </VCardText>
                 </VCard>
             </VCol>
